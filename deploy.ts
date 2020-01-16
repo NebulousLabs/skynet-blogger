@@ -107,11 +107,20 @@ const parseArgs = (args: string[]): {
     }
 
     if (!fs.existsSync(out['indexLocation'])) {
-        throw new Error(`index.html not found at ${out['indexLocation']}`)
+        if (fs.existsSync(templateLocation(out['indexLocation']))) {
+            fs.copyFileSync(
+                templateLocation(out['indexLocation']),
+                out['indexLocation']
+            )
+        } else {
+            throw new Error(`index.html not found at ${out['indexLocation']}`)
+        }
     }
+
     if (!fs.existsSync(out['blogLocation'])) {
         throw new Error(`blog not found at ${out['blogLocation']}`)
     }
+
     return out
 }
 
@@ -126,6 +135,13 @@ const bkpLocation = (location: string) => {
     const basename = path.basename(location)
     const parts = splitN(basename, ".", 2)
     return `${dirname}/${parts[0]}_bkp.${parts[1]}`
+}
+
+const templateLocation = (location: string) => {
+    const dirname = path.dirname(location)
+    const basename = path.basename(location)
+    const parts = splitN(basename, ".", 2)
+    return `${dirname}/${parts[0]}_template.${parts[1]}`
 }
 
 const distLocation = (location: string) => {

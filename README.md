@@ -1,11 +1,38 @@
 # Blog Demo
 
-To run, add a blogpost in markdown and run the following commands:
+### Getting started
 
-```bash
-npm install
-npm run deploy
+It's pretty easy to get your blog up and running.  
+The only thing you have to do is write a blog post, and then run the deploy script.
+
+Seeing as markdown seems to be the go-to for technical writing lately, I
+followed suit.  
+The markdown will be automically converted to HTML.
+
+**To write a blog posts:**
+- add a new markdown file to the blog directory
+- write your blog post
+- add a header
+
+The header is necessary to be able to render a decent table of contents.  
+It has the following format, not all fields are required but it looks better.
+
+```
+---
+title:
+image:
+description:
+author:
+date:
+---
 ```
 
-This will give you a link to your freshly deployed blog post!
-For more information, check out my blog post [here](TODO)!
+**To deploy your blog:**
+- run the following commands:
+```
+npm install
+npm run deploy -- -n http://siasky.net
+```
+
+After running the deploy script, you'll get a link to your static blog site.  
+Et voilà, that's it!

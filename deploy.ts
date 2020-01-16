@@ -125,7 +125,7 @@ const parseArgs = (args: string[]): {
 }
 
 const defaults = {
-    'node': 'localhost:9980',
+    'node': 'http://localhost:9980',
     'indexLocation': `${__dirname}/index.html`,
     'blogLocation': `${__dirname}/blog`,
 };

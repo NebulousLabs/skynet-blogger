@@ -1,0 +1,28 @@
+{
+  "scripts": {
+    "deploy": "ts-node deploy.ts"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {
+    "@types/execa": "^2.0.0",
+    "@types/fs-extra": "^8.0.1",
+    "@types/listr": "^0.14.2",
+    "@types/node": "^13.1.6",
+    "@types/tmp": "^0.1.0",
+    "axios": "^0.19.1",
+    "dotenv": "^8.2.0",
+    "execa": "^4.0.0",
+    "form-data": "^3.0.0",
+    "fs-extra": "^8.1.0",
+    "listr": "^0.14.3",
+    "node-html-parser": "^1.1.17",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-inliner": "^1.0.10",
+    "path": "^0.12.7",
+    "showdown": "^1.9.1",
+    "tmp": "^0.1.0",
+    "ts-node": "^8.6.1"
+  }
+}

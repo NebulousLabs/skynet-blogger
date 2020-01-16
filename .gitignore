@@ -1,0 +1,6 @@
+index_bkp.html
+node_modules
+dist
+.cache
+.env
+.vscode

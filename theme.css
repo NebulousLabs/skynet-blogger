@@ -1,0 +1,103 @@
+html, body {
+    height: 100%;
+
+    font-family: medium-content-sans-serif-font,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    letter-spacing: 0;
+    font-weight: 400;
+    font-style: normal;
+
+    color: black;
+    /* font-family: medium-content-sans-serif-font,"Lucida Grande","Lucida Sans Unicode","Lucida Sans",Geneva,Arial,sans-serif!important; */
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+img { max-width: 100%; }
+
+a { color: inherit; } 
+a:visited { text-decoration: none; color:#7f8c8d; }
+a:focus { text-decoration: none; color:#7f8c8d; }
+a:active { text-decoration: none; color:#7f8c8d; }
+a:hover { text-decoration: none; color:#7f8c8d; }
+
+a.nav-item a { color:#1ED663 }
+a.nav-item a:visited { text-decoration: none; color:#7f8c8d; }
+a.nav-item a:hover { text-decoration: none; color:#1ED663; }
+a.nav-item a:focus { text-decoration: none; color:#1ED663; }
+
+h2 { margin-top: 0 }
+h5 { margin: 0 0 10 0 }
+
+.logo {
+    height: 100px;
+    line-height: 100px;
+    text-decoration: none;
+    float: left;
+}
+
+.logo img{
+    width: 60px;
+    height: 100px;
+    margin-right: 10px;
+    float: left;
+}
+
+/* STRUCTURE */
+.header {
+    padding: 0 10px;
+    line-height: 100px;
+    border-bottom: 1px solid lightgray;
+}
+.nav {
+    float: right;
+    margin-left: 10px;
+}
+.content {
+    flex: 1 0 auto;
+    padding: 0 10px 20px 10px;
+}
+.footer {
+    border-top: 1px solid lightgray;
+    flex-shrink: 0;
+    padding: 20px 10px;
+}
+.links {
+    float: right;
+}
+
+/* BLOG */
+#back {
+    float: right;
+    width: 30px;
+    padding: 10px;
+}
+
+.blog-entry {
+    list-style-type: none;
+    border: 1px solid lightgray;
+    margin-bottom: 20px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+
+#detail {
+    border: 1px solid lightgray;   
+    padding: 10px;
+}
+
+#detail .blog-entry-description,
+#detail .blog-entry-date,
+#detail .blog-entry-author { 
+    display: none 
+}

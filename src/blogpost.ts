@@ -116,7 +116,7 @@ export class BlogPost {
         }
         this.links.forEach(link => {
             if (link.link.indexOf('://') == -1) {
-                assets[link.link] = null
+                assets[link.link.trim()] = null
             }
         })
         this.assets = toAbsolute(assets, this.location)

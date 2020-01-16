@@ -17,26 +17,26 @@ body {
     margin: 0 auto;
 }
 
-ul {
-    padding: 0;
-    margin: 0;
-}
-
 img { max-width: 100%; }
 
-a { color: inherit; } 
-a:visited { text-decoration: none; color:#7f8c8d; }
-a:focus { text-decoration: none; color:#7f8c8d; }
-a:active { text-decoration: none; color:#7f8c8d; }
-a:hover { text-decoration: none; color:#7f8c8d; }
+a { text-decoration: none; color: #1ED663; }
+a:visited { text-decoration: none; color:#1ED663; }
+a:focus { text-decoration: none; color:#1ED663; }
+a:active { text-decoration: none; color:#1ED663; }
+a:hover { text-decoration: underline; color:#1ED663; }
 
+/* 
 a.nav-item a { color:#1ED663 }
 a.nav-item a:visited { text-decoration: none; color:#7f8c8d; }
 a.nav-item a:hover { text-decoration: none; color:#1ED663; }
-a.nav-item a:focus { text-decoration: none; color:#1ED663; }
+a.nav-item a:focus { text-decoration: none; color:#1ED663; } */
 
 h2 { margin-top: 0 }
-h5 { margin: 0 0 10 0 }
+h5 {
+    color: darkgray;
+    margin: 0;
+    font-weight: normal;
+}
 
 .logo {
     height: 100px;
@@ -76,12 +76,6 @@ h5 { margin: 0 0 10 0 }
 }
 
 /* BLOG */
-#back {
-    float: right;
-    width: 30px;
-    padding: 10px;
-}
-
 .blog-entry {
     list-style-type: none;
     border: 1px solid lightgray;
@@ -90,6 +84,16 @@ h5 { margin: 0 0 10 0 }
     cursor: pointer;
 }
 
+#toc ul {
+    padding: 0;
+    margin: 0;
+}
+
+#back {
+    float: right;
+    width: 30px;
+    padding: 10px;
+}
 
 #detail {
     border: 1px solid lightgray;   
@@ -100,4 +104,27 @@ h5 { margin: 0 0 10 0 }
 #detail .blog-entry-date,
 #detail .blog-entry-author { 
     display: none 
+}
+
+/* CODE */
+code { color: #F9BB00; }
+
+pre {
+    background: #333;
+    white-space: pre;
+    word-wrap: break-word;
+    overflow: auto;
+}
+
+pre code {
+    margin: 20px;
+    border-radius: 4px;
+    position: relative;
+
+    font-family: "Inconsolata","Monaco","Consolas","Andale Mono","Bitstream Vera Sans Mono","Courier New",Courier,monospace;
+    display: block;
+    overflow-x: auto;
+    font-size: 13px;
+    line-height: 19px;
+    color: white;
 }

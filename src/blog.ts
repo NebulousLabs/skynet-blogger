@@ -111,8 +111,8 @@ export class Blog {
             toc += header.title ? `<h2>${header.title}</h2>` : ''
             toc += header.image ? `<img src="${header.image}"/>` : ''
             toc += header.description ? `<p class="blog-entry-description">${header.description}</p>` : ''
-            toc += header.date ? `<h5 class="blog-entry-date">${header.date}</h5>` : ''
             toc += header.author ? `<h5 class="blog-entry-author">${header.author}</h5>` : ''
+            toc += header.date ? `<h5 class="blog-entry-date">${header.date}</h5>` : ''
             toc += '</li>'
         })
         toc += '</ul>'

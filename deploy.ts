@@ -139,6 +139,6 @@ const distLocation = (location: string) => {
         const ctx = await tasks.run({ args: args, blog: null, url: null })
         console.log(`\nVisit your blog at ${ctx.url}\n`)
     } catch (err) {
-        //
+        // error will be displayed in the task's output
     }
 })();

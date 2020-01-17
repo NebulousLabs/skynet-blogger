@@ -38,4 +38,4 @@ npm run deploy -- -n http://siasky.net
 After running the deploy script, you'll get a link to your static blog site.  
 Et voilà, that's it!
 
-[1]: http://siasky.net/api/sialink/jABfYMv0eyszQ-vhHdfkttwxTVbSV9mDfYpvPqlH5AkfLQ
+[1]: http://siasky.net/api/sialink/jACE0eB1c36lB8MbdseEjR8PFuJCDbupkjbmsBi9QpmaxA

@@ -31,6 +31,10 @@ a.nav-item a:visited { text-decoration: none; color:#7f8c8d; }
 a.nav-item a:hover { text-decoration: none; color:#1ED663; }
 a.nav-item a:focus { text-decoration: none; color:#1ED663; } */
 
+h1 {
+    height: 50px;
+    line-height: 50px;
+}
 h2 { margin-top: 0 }
 h5 {
     color: darkgray;
@@ -68,7 +72,7 @@ h5 {
 }
 .content {
     flex: 1 0 auto;
-    padding: 0 10px 20px 10px;
+    padding: 0 20px 20px 20px;
 }
 .footer {
     border-top: 1px solid lightgray;
@@ -84,7 +88,7 @@ h5 {
     list-style-type: none;
     border: 1px solid lightgray;
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 20px 30px;
     cursor: pointer;
 }
 
@@ -95,8 +99,8 @@ h5 {
 
 #back {
     float: right;
-    width: 30px;
-    padding: 10px;
+    width: 50px;
+    padding: 0px;
 }
 
 #detail {

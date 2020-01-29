@@ -6,11 +6,11 @@ var Code = (function (window) {
         // tabbed layout
         ToTabs: function () {
             const codeBlocks = this.findConsecutiveBlocks(2)
-            console.log(codeBlocks)
+            let cnt = 0
             for (const cb of codeBlocks) {
                 // build tabs html
-                let html = '<ul class="tabs">'
-                const index = 0
+                let html = `<ul id="tabbed${cnt++}" class="tabs">`
+                let index = 0
                 for (const code of cb) {
                     index++
                     const language = code.className.split('-')[1]
@@ -42,6 +42,20 @@ var Code = (function (window) {
                     code.parentNode.removeChild(code)
                 }
             }
+
+            // fix the height programmatically
+            for (let i = 0; i < codeBlocks.length; i++) {
+                let maxHeight = 0
+                const ul = document.getElementById(`tabbed${i}`)
+                for (const content of ul.getElementsByClassName("content")) {
+                    const height = this.getHeight(content) + 20 // padding
+                    if (height > maxHeight) {
+                        maxHeight = height
+                    }
+                }
+                ul.style.height = maxHeight
+            }
+
         },
 
 
@@ -77,6 +91,17 @@ var Code = (function (window) {
             template.innerHTML = html;
             return template.content.firstChild;
         },
+
+
+        getHeight(element) {
+            element = element.cloneNode(true);
+            element.style.visibility = "hidden";
+            document.body.appendChild(element);
+            var height = element.offsetHeight + 0;
+            document.body.removeChild(element);
+            element.style.visibility = "visible";
+            return height;
+        }
     }
 })(self)
 

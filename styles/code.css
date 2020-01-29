@@ -4,6 +4,7 @@
     margin: 40px auto;
     padding: 0px;
     position: relative;
+    background: #f5f2f0;
 }
 .tabs:after {
     content: "";
@@ -42,11 +43,10 @@
 .tabs .content {
     display: none;
     overflow: hidden;
-    padding: 20px;
+    overflow-x: scroll;
     position: absolute;
     left: 0;
     right: 0;
-    background: #f5f2f0;
     color: #DFDFDF;
     
     opacity:0;

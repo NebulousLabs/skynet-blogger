@@ -19,7 +19,7 @@ var Code = (function (window) {
                         <li class="tab">
                         <input type="radio" name="tabs" id="tab${index}" checked />
                         <label for="tab${index}">${language}</label>
-                        <div id="tab-content${index}" class="content">${code.innerHTML}</div>
+                        <div id="tab-content${index}" class="content">${code.outerHTML}</div>
                         </li>
                         `
                     } else {
@@ -27,7 +27,7 @@ var Code = (function (window) {
                         <li class="tab">
                         <input type="radio" name="tabs" id="tab${index}" />
                         <label for="tab${index}">${language}</label>
-                        <div id="tab-content${index}" class="content">${code.innerHTML}</div>
+                        <div id="tab-content${index}" class="content">${code.outerHTML}</div>
                         </li>
                         `
                     }
@@ -48,7 +48,7 @@ var Code = (function (window) {
                 let maxHeight = 0
                 const ul = document.getElementById(`tabbed${i}`)
                 for (const content of ul.getElementsByClassName("content")) {
-                    const height = this.getHeight(content) + 20 // padding
+                    const height = this.getHeight(content)
                     if (height > maxHeight) {
                         maxHeight = height
                     }

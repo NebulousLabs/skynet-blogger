@@ -16,7 +16,7 @@ export class BlogPost {
 
     constructor(private location: string) { this.parse() }
 
-    public async publish(node: string) {
+    public async publish(portal: string) {
         if (this.isPublished()) {
             return
         }
@@ -33,14 +33,16 @@ export class BlogPost {
         fs.writeFileSync(tmpfile, contents, 'utf-8')
 
         // Upload & cleanup
-        this.header.linkfile = await upload(node, tmpfile)
+        this.header.linkfile = await upload(portal, tmpfile)
         removeSync(tmpfile)
         rmdirSync(tmp.name)
 
         // Update the header
         let updated = "---\n";
         Object.keys(this.header).forEach(key => {
-            updated += `${key}: ${this.header[key]}\n`
+            if (this.header[key]) {
+                updated += `${key}: ${this.header[key]}\n`
+            }
         })
         updated += "---\n";
         updated += contents

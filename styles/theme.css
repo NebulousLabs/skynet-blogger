@@ -54,8 +54,8 @@ h5 {
 }
 
 .logo img{
-    width: 60px;
-    height: 100px;
+    padding-top: 10px;
+    height: 80px;
     margin-right: 10px;
     float: left;
 }
@@ -115,24 +115,24 @@ h5 {
 }
 
 /* CODE */
-code { color: #F9BB00; }
+/* code { color: #F9BB00; }
 
 pre {
-    background: #333;
-    white-space: pre;
-    word-wrap: break-word;
-    overflow: auto;
+background: #333;
+white-space: pre;
+word-wrap: break-word;
+overflow: auto;
 }
 
 pre code {
-    margin: 20px;
-    border-radius: 4px;
-    position: relative;
+margin: 20px;
+border-radius: 4px;
+position: relative;
 
-    font-family: "Inconsolata","Monaco","Consolas","Andale Mono","Bitstream Vera Sans Mono","Courier New",Courier,monospace;
-    display: block;
-    overflow-x: auto;
-    font-size: 13px;
-    line-height: 19px;
-    color: white;
-}
+font-family: "Inconsolata","Monaco","Consolas","Andale Mono","Bitstream Vera Sans Mono","Courier New",Courier,monospace;
+display: block;
+overflow-x: auto;
+font-size: 13px;
+line-height: 19px;
+color: white;
+} */

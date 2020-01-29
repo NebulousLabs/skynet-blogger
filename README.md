@@ -3,7 +3,8 @@
 ### Getting started
 
 It's pretty easy to get your blog up and running.  
-If you want a sneak peek of how it looks like, you can check out mine [here][1].
+If you want a sneak peek of how it looks like, you can check out mine here
+[sia://HABdQ9i0l0xJpRh2J2h-4c8oPyZQNH5SoBIWqcg8HrsvzQ][1].
 
 The only thing you have to do is write a blog post and run a script.  
 Seeing as markdown seems to be the go-to for technical writing lately, I
@@ -18,7 +19,7 @@ The markdown will be automically converted to HTML.
 The header is necessary to be able to render a decent table of contents.  
 It has the following format, not all fields are required but it looks better.
 
-```
+```bash
 ---
 title:
 image:
@@ -28,14 +29,17 @@ date:
 ---
 ```
 
-**To deploy your blog:**
-- run the following commands:
-```
+**To deploy your blog:**  
+- run the following commands
+- (!) it will currently deploy your blog to the siasky.net portal, you can
+pass in your own portal using the `--portal` flag.
+
+```bash
 npm install
-npm run deploy -- -n http://siasky.net
+npm run deploy
 ```
 
 After running the deploy script, you'll get a link to your static blog site.  
 Et voilà, that's it!
 
-[1]: http://siasky.net/api/sialink/jACE0eB1c36lB8MbdseEjR8PFuJCDbupkjbmsBi9QpmaxA
+[1]: http://siasky.net/HABdQ9i0l0xJpRh2J2h-4c8oPyZQNH5SoBIWqcg8HrsvzQ

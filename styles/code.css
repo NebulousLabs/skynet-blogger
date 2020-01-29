@@ -1,0 +1,67 @@
+.tabs{
+    width: 100%;
+    display: block;
+    margin: 40px auto;
+    padding: 0px;
+    position: relative;
+}
+.tabs:after {
+    content: "";
+    display: table;
+    clear: both;
+    margin-bottom: 20px;
+}
+.tabs .content:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.tabs .tab{
+    float: left;
+    display: block;
+}
+
+.tabs .tab>input[type="radio"] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+.tabs .tab>label {
+    display: block;
+    padding: 6px 21px;
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    color: darkgrey;
+    background: #f5f2f0;
+}
+
+.tabs .content {
+    display: none;
+    overflow: hidden;
+    padding: 20px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    background: #f5f2f0;
+    color: #DFDFDF;
+    
+    opacity:0;
+    transition: opacity 400ms ease-out;
+}
+
+.tabs>.tab>[id^="tab"]:checked + label {
+    top: 0;
+    background: #1ED663;
+    color: #F5F5F5;
+}
+
+.tabs>.tab>[id^="tab"]:checked ~ [id^="tab-content"] {
+    /* z-index: 1;or display: block; */
+    display:block;
+    opacity: 1;
+    transition: opacity 400ms ease-out;
+}

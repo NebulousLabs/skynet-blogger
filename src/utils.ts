@@ -6,32 +6,32 @@ import { BlogAssets } from "./types";
 
 require('dotenv').config();
 
-export async function upload(node: string, path: string): Promise<string> {
+export async function upload(portal: string, path: string): Promise<string> {
     const formData = new FormData();
     formData.append('file', fs.createReadStream(path));
 
     try {
-        const resp = await axios.post(node + '/api/linkfile', formData, {
+        const resp = await axios.post(portal + '/api/skyfile', formData, {
             auth: {
                 username: process.env.SIANODE_AUTH_USERNAME,
                 password: process.env.SIANODE_AUTH_PASSWORD,
             },
             headers: formData.getHeaders()
         })
-        return resp.data['sialink']
+        return resp.data['skylink']
     } catch (err) {
         throw new Error(`Upload failed with error ${err}`)
     }
 }
 
-export function viewnodeLink(node: string, sialink: string) {
-    if (!node) {
-        throw new Error('Could not generate viewnode link, node undefined')
+export function viewnodeLink(portal: string, skylink: string) {
+    if (!portal) {
+        throw new Error('Could not generate viewnode link, portal undefined')
     }
-    if (!sialink) {
-        throw new Error('Could not generate viewnode link, sialink undefined')
+    if (!skylink) {
+        throw new Error('Could not generate viewnode link, skylink undefined')
     }
-    return node + "/api/sialink/" + trimPrefix(sialink, "sia://")
+    return `${trimTrailingSlash(portal)}/${skylink}`
 }
 
 export function findAndReplace(input: string, dict: object) {
@@ -39,6 +39,13 @@ export function findAndReplace(input: string, dict: object) {
         input = input.replace(key, dict[key])
     })
     return input
+}
+
+export function trimTrailingSlash(str: string) {
+    if (str.substr(-1) === '/') {
+        return str.substr(0, str.length - 1);
+    }
+    return str;
 }
 
 export function trimPrefix(str, prefix) {

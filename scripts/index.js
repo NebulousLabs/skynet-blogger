@@ -1,7 +1,9 @@
 const showdown = require('showdown');
 const converter = new showdown.Converter();
+converter.setFlavor('github')
 
 import axios from 'axios';
+import Code from './code';
 
 window.onload = init;
 function init() {
@@ -19,17 +21,16 @@ function onclickEntry(event) {
     event.preventDefault();
 
     const header = event.currentTarget.innerHTML
-    const sialink = event.currentTarget.dataset['content']
-    if (cache[sialink]) {
-        loadDetail(header, cache[sialink])
+    const skylink = event.currentTarget.dataset['content']
+    if (cache[skylink]) {
+        loadDetail(header, cache[skylink])
         return
     }
 
-    const url = "http://www.siasky.net/api/sialink/" + trimPrefix(sialink, 'sia://')
+    const url = "http://www.siasky.net/api/skylink/" + trimPrefix(skylink, 'sia://')
     axios.get(url, { withCredentials: false }).then(resp => {
-        console.log(converter.makeHtml(resp.data))
-        cache[sialink] = converter.makeHtml(resp.data)
-        loadDetail(header, cache[sialink])
+        cache[skylink] = converter.makeHtml(resp.data)
+        loadDetail(header, cache[skylink])
     }).catch(error => {
         console.log(error)
     })
@@ -47,6 +48,8 @@ function loadDetail(headerHTML, contentHTML) {
     content.innerHTML = contentHTML
     detail.appendChild(content)
 
+    Prism.highlightAll();
+    Code.ToTabs();
     toggleUI()
 }
 

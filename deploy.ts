@@ -7,7 +7,7 @@ import { splitN, upload, viewnodeLink } from './src/utils';
 
 type Ctx = {
     args: {
-        node: string;
+        portal: string;
         indexLocation: string;
         blogLocation: string;
     };
@@ -32,8 +32,8 @@ const tasks = new Listr([
         task: async (ctx: Ctx) => {
             const uploaded = {}
             for (const asset of Object.keys(ctx.blog.assets)) {
-                const sialink = await upload(ctx.args.node, asset)
-                uploaded[asset] = viewnodeLink(ctx.args.node, sialink)
+                const skylink = await upload(ctx.args.portal, asset)
+                uploaded[asset] = viewnodeLink(ctx.args.portal, skylink)
             }
             ctx.blog.update(uploaded)
         },
@@ -41,7 +41,7 @@ const tasks = new Listr([
     {
         title: 'Publish blog posts',
         task: async (ctx: Ctx) => {
-            await ctx.blog.publish(ctx.args.node)
+            await ctx.blog.publish(ctx.args.portal)
             const bkp = bkpLocation(ctx.args.indexLocation)
             fs.copyFileSync(ctx.args.indexLocation, bkp)
             fs.writeFileSync(ctx.args.indexLocation, ctx.blog.html, 'utf-8')
@@ -57,8 +57,8 @@ const tasks = new Listr([
         title: 'Deploy blog',
         task: async (ctx: Ctx) => {
             const dist = distLocation(ctx.args.indexLocation)
-            const lf = await upload(ctx.args.node, dist)
-            ctx.url = viewnodeLink(ctx.args.node, lf)
+            const lf = await upload(ctx.args.portal, dist)
+            ctx.url = viewnodeLink(ctx.args.portal, lf)
         }
     }
 ]);
@@ -69,23 +69,23 @@ const printUsage = () => {
     
     Options:
     -h, --help \t\t print this message
-    -n, --node \t\t specify the sia node
+    -p, --portal \t\t specify the skynet portal
     -i, --index\t\t specify the location of the index.html
     -b, --blog \t\t specify the location of the blog posts
     `)
 }
 
 const parseArgs = (args: string[]): {
-    node: string;
+    portal: string;
     indexLocation: string;
     blogLocation: string;
 } => {
     const out = defaults
     for (let i = 0; i < args.length; i += 2) {
         switch (args[i]) {
-            case '-n':
-            case '--node':
-                out['node'] = args[i + 1]
+            case '-p':
+            case '--portal':
+                out['portal'] = args[i + 1]
                 break;
             case '-i':
             case '--index':
@@ -125,7 +125,7 @@ const parseArgs = (args: string[]): {
 }
 
 const defaults = {
-    'node': 'http://localhost:9980',
+    'portal': 'http://siasky.net',
     'indexLocation': `${__dirname}/index.html`,
     'blogLocation': `${__dirname}/blog`,
 };

@@ -26,13 +26,13 @@ export class Blog {
         private blogLocation: string
     ) { this.parse() }
 
-    public async publish(node: string) {
+    public async publish(portal: string) {
         if (!this.posts.length) {
             return
         }
 
         // publish all posts separately
-        await Promise.all(this.posts.map(p => p.publish(node)))
+        await Promise.all(this.posts.map(p => p.publish(portal)))
 
         // build a table of contents
         const toc = this.buildToC();

@@ -8,8 +8,10 @@ import { splitN, upload, viewnodeLink } from './src/utils';
 type Ctx = {
     args: {
         portal: string;
+        uploadpath: string;
         indexLocation: string;
         blogLocation: string;
+        announcement: boolean;
     };
     blog: Blog;
     url: string;
@@ -24,7 +26,7 @@ const tasks = new Listr([
                 fs.unlinkSync(ctx.args.indexLocation)
                 fs.moveSync(bkp, ctx.args.indexLocation)
             }
-            ctx.blog = new Blog(ctx.args.indexLocation, ctx.args.blogLocation)
+            ctx.blog = new Blog(ctx.args.indexLocation, ctx.args.blogLocation, ctx.args.announcement)
         }
     },
     {
@@ -32,7 +34,7 @@ const tasks = new Listr([
         task: async (ctx: Ctx) => {
             const uploaded = {}
             for (const asset of Object.keys(ctx.blog.assets)) {
-                const skylink = await upload(ctx.args.portal, asset)
+                const skylink = await upload(ctx.args.portal, ctx.args.uploadpath, asset)
                 uploaded[asset] = viewnodeLink(ctx.args.portal, skylink)
             }
             ctx.blog.update(uploaded)
@@ -41,7 +43,7 @@ const tasks = new Listr([
     {
         title: 'Publish blog posts',
         task: async (ctx: Ctx) => {
-            await ctx.blog.publish(ctx.args.portal)
+            await ctx.blog.publish(ctx.args.portal, ctx.args.uploadpath)
             const bkp = bkpLocation(ctx.args.indexLocation)
             fs.copyFileSync(ctx.args.indexLocation, bkp)
             fs.writeFileSync(ctx.args.indexLocation, ctx.blog.html, 'utf-8')
@@ -57,7 +59,7 @@ const tasks = new Listr([
         title: 'Deploy blog',
         task: async (ctx: Ctx) => {
             const dist = distLocation(ctx.args.indexLocation)
-            const lf = await upload(ctx.args.portal, dist)
+            const lf = await upload(ctx.args.portal, ctx.args.uploadpath, dist)
             ctx.url = viewnodeLink(ctx.args.portal, lf)
         }
     }
@@ -70,15 +72,19 @@ const printUsage = () => {
     Options:
     -h, --help \t\t print this message
     -p, --portal \t\t specify the skynet portal
+    -u, --uploadpath \t\t specify the upload path
     -i, --index\t\t specify the location of the index.html
     -b, --blog \t\t specify the location of the blog posts
+    -a, --announcement \t\t specify if it's an announcement (1 pager)
     `)
 }
 
 const parseArgs = (args: string[]): {
     portal: string;
+    uploadpath: string;
     indexLocation: string;
     blogLocation: string;
+    announcement: boolean;
 } => {
     const out = defaults
     for (let i = 0; i < args.length; i += 2) {
@@ -87,6 +93,10 @@ const parseArgs = (args: string[]): {
             case '--portal':
                 out['portal'] = args[i + 1]
                 break;
+            case '-u':
+            case '--uploadpath':
+                out['uploadpath'] = args[i + 1]
+                break;
             case '-i':
             case '--index':
                 out['indexLocation'] = args[i + 1]
@@ -94,6 +104,10 @@ const parseArgs = (args: string[]): {
             case '-b':
             case '--blog':
                 out['blogLocation'] = args[i + 1]
+                break;
+            case '-a':
+            case '--announcement':
+                out['announcement'] = true
                 break;
             case '-h':
             case '--help':
@@ -126,8 +140,10 @@ const parseArgs = (args: string[]): {
 
 const defaults = {
     'portal': 'http://siasky.net',
+    'uploadpath': '/api/skyfile',
     'indexLocation': `${__dirname}/index.html`,
     'blogLocation': `${__dirname}/blog`,
+    'announcement': false,
 };
 
 const bkpLocation = (location: string) => {

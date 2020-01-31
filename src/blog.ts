@@ -1,4 +1,5 @@
 
+import axios from "axios";
 import fs from "fs-extra";
 import { HTMLElement, parse } from 'node-html-parser';
 import { BlogPost } from "./blogpost";
@@ -23,28 +24,20 @@ export class Blog {
 
     constructor(
         private indexLocation: string,
-        private blogLocation: string
+        private blogLocation: string,
+        private announcement: boolean
     ) { this.parse() }
 
-    public async publish(portal: string) {
+    public async publish(portal: string, uploadpath: string) {
         if (!this.posts.length) {
             return
         }
 
-        // publish all posts separately
-        await Promise.all(this.posts.map(p => p.publish(portal)))
-
-        // build a table of contents
-        const toc = this.buildToC();
-
-        // update the #toc div
-        const root = parse(this.html.toString()) as unknown as HTMLElement
-        const htoc = root.querySelector('#toc') as unknown as HTMLElement
-        htoc.set_content(toc)
-
-        // hide the #noposts div
-        root.querySelector('#noposts').set_content("")
-        this.html = root.toString()
+        if (this.announcement) {
+            await this.publishAnnouncement(portal, uploadpath)
+            return
+        }
+        await this.publishBlog(portal, uploadpath)
     }
 
     public update(assets: BlogAssets) {
@@ -60,6 +53,45 @@ export class Blog {
                 post.update(assets)
             }
         }
+    }
+
+    private async publishAnnouncement(portal: string, uploadpath: string) {
+        if (this.posts.length != 1) {
+            throw new Error("Announcement can only be 1 post")
+        }
+
+        // upload the post
+        await this.posts[0].publish(portal, uploadpath)
+        const skylink = this.posts[0].header.linkfile
+
+        // set the announcement skylink        
+        const root = parse(this.html.toString()) as unknown as HTMLElement
+        root.querySelector('#announcement').set_content(skylink)
+
+        // hide the #noposts div
+        root.querySelector('#noposts').set_content("")
+        this.html = root.toString()
+
+        // fetch post contents
+        const response = await axios.get(`${portal}/web/${skylink}`)
+        this.html = this.html.replace(skylink, response.data)
+    }
+
+    private async publishBlog(portal: string, uploadpath: string) {
+        // publish all posts separately
+        await Promise.all(this.posts.map(p => p.publish(portal, uploadpath)))
+
+        // build a table of contents
+        const toc = this.buildToC();
+
+        // update the #toc div
+        const root = parse(this.html.toString()) as unknown as HTMLElement
+        const htoc = root.querySelector('#toc') as unknown as HTMLElement
+        htoc.set_content(toc)
+
+        // hide the #noposts div
+        root.querySelector('#noposts').set_content("")
+        this.html = root.toString()
     }
 
     private parse() {

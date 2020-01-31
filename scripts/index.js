@@ -28,6 +28,7 @@ function onclickEntry(event) {
     const skylink = event.currentTarget.dataset['content']
     if (cache[skylink]) {
         loadDetail(header, cache[skylink])
+        toggleUI()
         return
     }
 
@@ -35,6 +36,7 @@ function onclickEntry(event) {
     axios.get(url, { withCredentials: false }).then(resp => {
         cache[skylink] = converter.makeHtml(resp.data)
         loadDetail(header, cache[skylink])
+        toggleUI()
     }).catch(error => {
         console.log(error)
     })
@@ -46,7 +48,7 @@ function loadDetail(headerHTML, contentHTML) {
 
     const header = document.createElement('div')
     header.innerHTML = headerHTML
-    detail.appendChild(header)
+    // detail.appendChild(header) 
 
     const content = document.createElement('div')
     content.innerHTML = contentHTML
@@ -58,21 +60,46 @@ function loadDetail(headerHTML, contentHTML) {
 
     Prism.highlightAll();
     Code.ToTabs();
-    toggleUI()
 }
 
 function initUI() {
     const entries = document.getElementsByClassName("blog-entry")
-    for (let i = 0; i < entries.length; i++) {
-        entries[i].addEventListener('click', onclickEntry)
+
+    // announcement
+    if (entries.length == 0) {
+        // announcement hack
+        const announcement = document.getElementById("announcement")
+        const contentHTML = converter.makeHtml(announcement.innerHTML)
+
+        // Don't look at me. I'm hideous
+        const tmp = document.createElement('div')
+        tmp.innerHTML = contentHTML
+        const title = tmp.getElementsByTagName('h1')[0].innerHTML
+        const headerHTML = `<h2>${title}</h2>`
+        loadDetail(headerHTML, contentHTML)
+
+        toggle(document.getElementById("detail"))
+        return
     }
 
-    const backBtn = document.getElementById("back")
-    backBtn.addEventListener('click', onclickBack)
+    // blog
+    else {
+        for (let i = 0; i < entries.length; i++) {
+            entries[i].addEventListener('click', onclickEntry)
+        }
+
+        const backBtn = document.getElementById("back")
+        backBtn.addEventListener('click', onclickBack)
+
+        toggle(document.getElementById("nav"))
+    }
+}
+
+function toggle(el) {
+    el.style.display = el.style.display === "none" ? "block" : "none"
 }
 
 function toggleUI() {
-    const toggle = function (el) { el.style.display = el.style.display === "none" ? "block" : "none" }
     toggle(document.getElementById("toc"))
     toggle(document.getElementById("back"))
     toggle(document.getElementById("detail"))

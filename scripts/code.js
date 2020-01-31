@@ -52,17 +52,6 @@ var Code = (function (window) {
                     ul.style.height = this.getHeight(content)
                 }.bind(this)
             }
-
-            // fix the height of the first tab of every block
-            for (let i = 0; i < codeBlocks.length; i++) {
-                let height = 0
-                const ul = document.getElementById(`tabbed${i}`)
-                for (const content of ul.getElementsByClassName("content")) {
-                    height = this.getHeight(content)
-                    break
-                }
-                ul.style.height = height
-            }
         },
 
         // findConsecutiveBlocks will search for all <pre> tags and return a

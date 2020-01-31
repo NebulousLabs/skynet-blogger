@@ -145,7 +145,7 @@ h5 {
 
 #detail {
     border: 1px solid lightgray;   
-    padding: 20px 30px;
+    padding: 0 30px 20px 30px;
 }
 
 #detail .blog-entry-description,

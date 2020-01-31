@@ -6,12 +6,12 @@ import { BlogAssets } from "./types";
 
 require('dotenv').config();
 
-export async function upload(portal: string, path: string): Promise<string> {
+export async function upload(portal: string, uploadpath: string, path: string): Promise<string> {
     const formData = new FormData();
     formData.append('file', fs.createReadStream(path));
 
     try {
-        const resp = await axios.post(portal + '/api/skyfile', formData, {
+        const resp = await axios.post(portal + uploadpath, formData, {
             auth: {
                 username: process.env.SIANODE_AUTH_USERNAME,
                 password: process.env.SIANODE_AUTH_PASSWORD,

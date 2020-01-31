@@ -8,15 +8,15 @@ export class BlogPost {
     public header: BlogPostHeader;
     public assets: BlogAssets;
     public links: BlogLink[];
+    public raw: string;
 
     private bre = new RegExp("^---(?<header>.*?)---(?<post>.*)", "ms")
     private lre = new RegExp("(?<tag>\\[.*\\]):(?<link>.*)", "g")
 
-    private raw: string;
 
     constructor(private location: string) { this.parse() }
 
-    public async publish(portal: string) {
+    public async publish(portal: string, uploadpath: string) {
         if (this.isPublished()) {
             return
         }
@@ -33,7 +33,7 @@ export class BlogPost {
         fs.writeFileSync(tmpfile, contents, 'utf-8')
 
         // Upload & cleanup
-        this.header.linkfile = await upload(portal, tmpfile)
+        this.header.linkfile = await upload(portal, uploadpath, tmpfile)
         removeSync(tmpfile)
         rmdirSync(tmp.name)
 

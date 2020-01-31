@@ -4,7 +4,7 @@
 
 It's pretty easy to get your blog up and running.  
 If you want a sneak peek of how it looks like, you can check out mine here
-[sia://HABdQ9i0l0xJpRh2J2h-4c8oPyZQNH5SoBIWqcg8HrsvzQ][1].
+[sia://HACNofhM41fkTpQKqG3QmZpfDy5HM6uo4e7RuQgKd38gWw][1].
 
 The only thing you have to do is write a blog post and run a script.  
 Seeing as markdown seems to be the go-to for technical writing lately, I
@@ -42,4 +42,4 @@ npm run deploy
 After running the deploy script, you'll get a link to your static blog site.  
 Et voilà, that's it!
 
-[1]: http://siasky.net/HABdQ9i0l0xJpRh2J2h-4c8oPyZQNH5SoBIWqcg8HrsvzQ
+[1]: http://siasky.net/HACNofhM41fkTpQKqG3QmZpfDy5HM6uo4e7RuQgKd38gWw

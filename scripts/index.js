@@ -92,6 +92,7 @@ function initUI() {
         backBtn.addEventListener('click', onclickBack)
 
         toggle(document.getElementById("nav"))
+        toggle(document.getElementById("toc"))
     }
 }
 

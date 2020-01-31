@@ -2,7 +2,7 @@
 
 ## Getting started
 
-It's pretty easy to get your blog up and running. If you want a sneak peek of how it looks like, you can check out mine here [sia://HACNofhM41fkTpQKqG3QmZpfDy5HM6uo4e7RuQgKd38gWw][1]. The only thing you have to do is write a blog post and run a script. Seeing as markdown seems to be the go-to for technical writing lately, I followed suit. The markdown will be automically converted to HTML.
+It's pretty easy to get your blog up and running. If you want a sneak peek of how it looks like, you can check out mine here [sia://HACIhPRE8zMBq6pT8K9l6LYMlFWwg4o8_WFlgCG4RUc0Wg][1]. The only thing you have to do is write a blog post and run a script. Seeing as markdown seems to be the go-to for technical writing lately, I followed suit. The markdown will be automically converted to HTML.
 
 ## Writing a blog post
 
@@ -81,9 +81,6 @@ If all goes well, you should see something like this after you've deployed:
 ```
 ➜  skynet-blogger git:(master) ✗ npm run deploy
 
-> @ deploy /Users/peterjan/Projects/blog-demo
-> ts-node deploy.ts
-
   ✔ Parse blog
   ✔ Parse blog
   ✔ Publish assets
@@ -91,8 +88,8 @@ If all goes well, you should see something like this after you've deployed:
   ✔ Build blog
   ✔ Deploy blog
 
-Visit your blog at http://siasky.net/HACNofhM41fkTpQKqG3QmZpfDy5HM6uo4e7RuQgKd38gWw
+Visit your blog at https://siasky.net/HACIhPRE8zMBq6pT8K9l6LYMlFWwg4o8_WFlgCG4RUc0Wg
 ```
 
-[1]: http://siasky.net/HACNofhM41fkTpQKqG3QmZpfDy5HM6uo4e7RuQgKd38gWw
+[1]: https://siasky.net/HACIhPRE8zMBq6pT8K9l6LYMlFWwg4o8_WFlgCG4RUc0Wg
 [2]: assets/code_blocks_cropped.png

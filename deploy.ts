@@ -139,7 +139,7 @@ const parseArgs = (args: string[]): {
 }
 
 const defaults = {
-    'portal': 'http://siasky.net',
+    'portal': 'https://siasky.net',
     'uploadpath': '/api/skyfile',
     'indexLocation': `${__dirname}/index.html`,
     'blogLocation': `${__dirname}/blog`,

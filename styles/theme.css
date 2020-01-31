@@ -19,11 +19,52 @@ body {
 
 img { max-width: 100%; }
 
-a { text-decoration: none; color: #1ED663; }
+/* LINKS */
+a { text-decoration: none; color: #1ED663; overflow-wrap: break-word; }
 a:visited { text-decoration: none; color:#1ED663; }
 a:focus { text-decoration: none; color:#1ED663; }
 a:active { text-decoration: none; color:#1ED663; }
 a:hover { text-decoration: underline; color:#1ED663; }
+
+/* FONT SIZES */
+body{
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+h1{ font-size: 3em; }
+
+h2{ font-size: 2em; }
+
+h3{
+    font-size: 1em;
+    line-height: 1.618em;
+    text-transform: uppercase;
+}
+
+p{
+    font-size: 1em;
+    line-height: 1.618em;
+}
+
+@media all and (min-width: 960px) {
+    body{
+        font-size: 18px;
+    }
+}
+
+@media all and (max-width: 959px) and (min-width: 600px) {
+    body{
+        font-size: 16px;
+    }
+}
+
+@media all and (max-width: 599px) and (min-width: 320px) {
+    body{
+        font-size: 12px;
+    }
+ 
+}
 
 /* 
 a.nav-item a { color:#1ED663 }
@@ -113,26 +154,3 @@ h5 {
 #detail .blog-entry-author { 
     display: none 
 }
-
-/* CODE */
-/* code { color: #F9BB00; }
-
-pre {
-background: #333;
-white-space: pre;
-word-wrap: break-word;
-overflow: auto;
-}
-
-pre code {
-margin: 20px;
-border-radius: 4px;
-position: relative;
-
-font-family: "Inconsolata","Monaco","Consolas","Andale Mono","Bitstream Vera Sans Mono","Courier New",Courier,monospace;
-display: block;
-overflow-x: auto;
-font-size: 13px;
-line-height: 19px;
-color: white;
-} */

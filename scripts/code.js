@@ -18,7 +18,7 @@ var Code = (function (window) {
                         html += `
                         <li class="tab">
                         <input type="radio" name="tabs" id="tab${index}" checked />
-                        <label for="tab${index}">${language}</label>
+                        <label class="tab-label" for="tab${index}">${language}</label>
                         <div id="tab-content${index}" class="content">${code.outerHTML}</div>
                         </li>
                         `
@@ -26,7 +26,7 @@ var Code = (function (window) {
                         html += `
                         <li class="tab">
                         <input type="radio" name="tabs" id="tab${index}" />
-                        <label for="tab${index}">${language}</label>
+                        <label class="tab-label" for="tab${index}">${language}</label>
                         <div id="tab-content${index}" class="content">${code.outerHTML}</div>
                         </li>
                         `
@@ -43,21 +43,27 @@ var Code = (function (window) {
                 }
             }
 
-            // fix the height programmatically
-            for (let i = 0; i < codeBlocks.length; i++) {
-                let maxHeight = 0
-                const ul = document.getElementById(`tabbed${i}`)
-                for (const content of ul.getElementsByClassName("content")) {
-                    const height = this.getHeight(content)
-                    if (height > maxHeight) {
-                        maxHeight = height
-                    }
-                }
-                ul.style.height = maxHeight
+            // add onclick handlers to fix the height when changing tab
+            for (const el of window.document.getElementsByClassName('tab-label')) {
+                el.onclick = function () {
+                    const id = el.getAttribute("for").slice(3)
+                    const content = document.getElementById(`tab-content${id}`)
+                    const ul = content.closest('ul')
+                    ul.style.height = this.getHeight(content)
+                }.bind(this)
             }
 
+            // fix the height of the first tab of every block
+            for (let i = 0; i < codeBlocks.length; i++) {
+                let height = 0
+                const ul = document.getElementById(`tabbed${i}`)
+                for (const content of ul.getElementsByClassName("content")) {
+                    height = this.getHeight(content)
+                    break
+                }
+                ul.style.height = height
+            }
         },
-
 
         // findConsecutiveBlocks will search for all <pre> tags and return a
         // nested array of consectuive blocks of minLength

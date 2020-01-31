@@ -27,7 +27,7 @@ function onclickEntry(event) {
         return
     }
 
-    const url = "http://www.siasky.net/api/skylink/" + trimPrefix(skylink, 'sia://')
+    const url = "http://www.siasky.net/web/" + trimPrefix(skylink, 'sia://')
     axios.get(url, { withCredentials: false }).then(resp => {
         cache[skylink] = converter.makeHtml(resp.data)
         loadDetail(header, cache[skylink])

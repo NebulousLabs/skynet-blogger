@@ -48,6 +48,7 @@
     left: 0;
     right: 0;
     color: #DFDFDF;
+    background: #f5f2f0;
     
     opacity:0;
     transition: opacity 400ms ease-out;

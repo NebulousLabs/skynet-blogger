@@ -70,12 +70,12 @@ const printUsage = () => {
     Usage: npm run deploy [options]
     
     Options:
-    -h, --help \t\t print this message
-    -p, --portal \t\t specify the skynet portal
-    -u, --uploadpath \t\t specify the upload path
-    -i, --index\t\t specify the location of the index.html
-    -b, --blog \t\t specify the location of the blog posts
-    -a, --announcement \t\t specify if it's an announcement (1 pager)
+    -h, --help          print this message
+    -p, --portal        specify the skynet portal
+    -u, --uploadpath    specify the upload path
+    -i, --index         specify the location of the index.html
+    -b, --blog          specify the location of the blog posts
+    -a, --announcement  specify if it's an announcement (1 pager)
     `)
 }
 

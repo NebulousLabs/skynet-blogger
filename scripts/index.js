@@ -6,13 +6,17 @@ import axios from 'axios';
 import Code from './code';
 
 window.onload = init;
+window.onpopstate = function (event) {
+    toggleUI()
+}
+
 function init() {
     initUI()
 }
 
 function onclickBack(event) {
     event.preventDefault();
-    toggleUI()
+    window.history.back()
 }
 
 const cache = {}
@@ -47,6 +51,10 @@ function loadDetail(headerHTML, contentHTML) {
     const content = document.createElement('div')
     content.innerHTML = contentHTML
     detail.appendChild(content)
+
+    const title = header.getElementsByTagName("h2")[0]
+    window.history.pushState({ page: 1 }, title.innerHTML)
+    window.history.forward()
 
     Prism.highlightAll();
     Code.ToTabs();

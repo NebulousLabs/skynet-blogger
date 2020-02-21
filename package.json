@@ -3,7 +3,7 @@
     "deploy": "ts-node deploy.ts"
   },
   "devDependencies": {
-    "typescript": "^3.7.4"
+    "typescript": "^3.8.2"
   },
   "dependencies": {
     "@types/execa": "^2.0.0",

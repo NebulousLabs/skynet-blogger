@@ -23,7 +23,7 @@
     "parcel-plugin-inliner": "^1.0.10",
     "path": "^0.12.7",
     "showdown": "^1.9.1",
-    "tmp": "^0.1.0",
+    "tmp": "^0.2.0",
     "ts-node": "^8.6.1"
   }
 }

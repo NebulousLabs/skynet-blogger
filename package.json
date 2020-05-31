@@ -18,7 +18,7 @@
     "form-data": "^3.0.0",
     "fs-extra": "^8.1.0",
     "listr": "^0.14.3",
-    "node-html-parser": "^1.1.17",
+    "node-html-parser": "^1.2.18",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-inliner": "^1.0.10",
     "path": "^0.12.7",

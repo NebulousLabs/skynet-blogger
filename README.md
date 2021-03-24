@@ -1,5 +1,7 @@
 # Skynet Blogger
 
+> :warning: This repo has been archived and moved under the new [SkynetHQ](https://github.com/SkynetHQ) repo [here](https://github.com/SkynetHQ/skynet-blogger)
+
 ## Getting started
 
 It's pretty easy to get your blog up and running. If you want a sneak peek of how it looks like, you can check out mine here [sia://HACIhPRE8zMBq6pT8K9l6LYMlFWwg4o8_WFlgCG4RUc0Wg][1]. The only thing you have to do is write a blog post and run a script. Seeing as markdown seems to be the go-to for technical writing lately, I followed suit. The markdown will be automically converted to HTML.
